@@ -4,14 +4,14 @@ Using a Multilayer Perceptron (a neural network of relatively low complexity) to
 Explanation of code is fairly thoroughly commented in the coding documents, project is ongoing.
 Right now, I've largely been spending time getting to know the problem and datasets thoroughly, 
 it helps that I'm actually interested in the problem at hand! As someone living in California,
-tons of cities and communities are subject to the forces of gentrification, and I've seen where
+many cities and communities are subject to the forces of gentrification, and I've seen where
 I live, Riverside, visibly gentrify. I'm happy about the diverse people I grew up with thanks to
 the fact that Riverside was not an expensive, unobtainable community to live in in the past, but
 now that is changing. But how can we best categorize census tracts (which are about the size of
 a large neighborhood) as gentrified or not? Use a massive dataset and neural networks of course!
 
-I found the LTDB_DP dataset while looking for census data to use, and it is even more useful in
-that the LTDB_DP dataset has been built to be easily comparable to past census tract data!
+I found the LTDB_DP dataset while looking for census data to use, which is very useful, as the
+LTDB_DP dataset has been built to be easily comparable to past census tract data!
 
 Link to LTDB info: https://s4.ad.brown.edu/projects/diversity/Researcher/LTDB.htm
 Link to Kaggle set: https://www.kaggle.com/mrmorj/gentrification-and-demographic-analysis
