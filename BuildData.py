@@ -6,10 +6,14 @@ NOCHANGE_COLUMNS = ['l_total','l_nhw','l_under18','l_age25up','l_coll4yr','l_med
     'l_ownerocc','l_renterocc','l_pctnhw','l_pctunder18','l_pctcoll4yr','l_pctowner']
 CHANGE_COLUMNS = ['total','nhw','under18','age25up','coll4yr','medhhinc','occunit',
     'ownerocc','renterocc','pctnhw','pctunder18','pctcoll4yr','pctowner']
-    #These are columns from the LTDB dataset. These columns were original measurements
-    #But now, we have new measurements based on better data from the census, which are in
-    #The other columns of this dataset, therefore we will delete this old data, as the
-    #Authors of this dataset indicate that using the new data is a much better idea
+NON_HELPFUL_COLUMNS = ['trtid10','trtid10num','cntyid10','changetype_1pct','changetype_5pct',
+    'newtype_1pct','newtype_5pct']
+
+    #These are columns from the LTDB dataset. The NOCHANGE_COLUMNS list contains the names of columns
+    #of data which are most accurate at describing census tracts that haven't had boundary changes over time
+    #The CHANGE_COLUMNS are more accurate at describing census tracts that have had boundary changes.
+    #The NON_HELPFUL_COLUMNS are simply columns that are used to identify tracts, they won't contribute
+    #anything to the neural network
 
 df = pd.read_csv('LTDB_DP.csv')
 df_flawed_gentrified = pd.read_csv('census_tracts.csv') ##Read CSV datasets
@@ -101,6 +105,21 @@ print("Did we really only drop 131 rows, as we want to?")
 print(71628-131 == len(df_total))
 print("====================================================")
 
+df_total = df_total.drop(NON_HELPFUL_COLUMNS,axis=1) #Drop columns that won't contribute to our neural network
+
+columns = df_total.columns
+scaler = preprocessing.StandardScaler()
+#Creating a scaler object, this will help us standardize each column of our dataframe with a mean = 0
+#and a variance = 1. We need to create this "scaler" object, as our dataframe has widely varying columns,
+#so this object better deals with such situations than other options this sklearn library provides us with
+df_total_scaled = scaler.fit_transform(df_total)  #Give each data column a mean of 0 and variance of 1 so the
+#distribution of data in each column doesn't inadvertently give any one variable more weight than another
+df_total_scaled = pd.DataFrame(df_total_scaled, columns=columns) #convert back into Pandas DataFrame
+df_total_scaled['gentrif'] = df_total['gentrif'] #We don't want to scale the row we are predicting, however
+print("After scaling our data, how are our variables distributed?")
+print(df_total_scaled.describe().loc[['mean','std','max'],].round(2).abs())
+print("====================================================")
+
 print("Storing processed data as a csv file called 'ProcessedData.csv'")
-df_total.to_csv('ProcessedData.csv', index=False)
+df_total_scaled.to_csv('ProcessedData.csv', index=False)
 #Save these dataframes for easy future use
