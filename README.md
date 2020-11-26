@@ -14,6 +14,7 @@ I found the LTDB_DP dataset while looking for census data to use, which is very 
 LTDB_DP dataset has been built to be easily comparable to past census tract data!
 
 Link to LTDB info: https://s4.ad.brown.edu/projects/diversity/Researcher/LTDB.htm
+
 Link to Kaggle set: https://www.kaggle.com/mrmorj/gentrification-and-demographic-analysis
 
 I will use the LTDB_DP dataset most, as it has credibility with the professors who have created
