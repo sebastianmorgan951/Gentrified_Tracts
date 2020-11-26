@@ -24,3 +24,17 @@ communities. This is a potential fault of my design of this project, that I trus
 put this Kaggle data together. Hopefully, their choice of 8,000 census tracts which they claimed
 to be gentrified, were good choices of tracts. I will take their choice at face value, then
 build my neural network around the LTDB_DP dataset with gentrified data in its own category.
+
+Outcome:
+
+After tweaking with the multilayer perceptron (MLP) somewhat, I've built a fairly simple binary
+classification model here! The model plateaus at around 80% accuracy, with weighted categories.
+Without weighted classes, the model has much higher accuracy, but gives almost no consideration
+to the minority case of gentrified tracts. I believe that this network could be greatly improved
+by conducting statistical tests, and tests using linear algebra (PCA) to see which variables out
+of those I've narrowed the model down to, truly affect the outcome. I also believe that this is
+problem which likely can't be modeled by a high accuracy MLP given the design of our project. My
+design is fundamentally flawed because I took it for granted that a random Kaggle user knew which
+census tracts were gentrified, and which were not, but I have no idea how they decided on their
+choices. I believe they chose tracts from cities which are known to be gentrified, but how they
+chose specific tracts is a mystery to me.
