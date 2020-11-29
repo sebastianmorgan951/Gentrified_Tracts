@@ -41,7 +41,7 @@ model.add(Dense(7, activation='relu'))
 #enough complexity to classify a binary situation like this, even when the
 #classification boundary has an arbitrarily complicated shape
 
-#Furthermore, we use the 'relu' activation function, which only considers non-zero
+#Furthermore, we use the 'relu' activation function, which only considers positive
 #portions of the data passed to it, and while this may seem overly simple to use
 #as an activation function, in conjunction with the weights and biases that are
 #already being computed during the training process, this function is known to be
